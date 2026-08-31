@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   // Mobile menu
-  const menuButton = document.querySelector(".menu");
+  const menuButton = document.querySelector(
+    ".menu-toggle, .menu-btn, .hamburger, #menu-toggle, #menuButton"
+  );
+
   const nav = document.querySelector("nav");
 
   if (menuButton && nav) {
@@ -10,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
       menuButton.classList.toggle("active");
     });
 
+    // Close menu after clicking a link
     nav.querySelectorAll("a").forEach(link => {
       link.addEventListener("click", () => {
         nav.classList.remove("active");
@@ -25,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (target) {
         event.preventDefault();
+
         target.scrollIntoView({
           behavior: "smooth",
           block: "start"
