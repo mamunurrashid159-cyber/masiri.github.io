@@ -1,10 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // Mobile menu
-  const menuButton = document.querySelector(
-    ".menu-toggle, .menu-btn, .hamburger, #menu-toggle, #menuButton"
-  );
-
+  // Mobile men
+const menuButton = document.querySelector(".menu");
   const nav = document.querySelector("nav");
 
   if (menuButton && nav) {
