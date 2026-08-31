@@ -1,44 +1,41 @@
-// Mobile menu
-const menuButton = document.querySelector(".menu-button");
-const navMenu = document.querySelector(".nav-menu");
+document.addEventListener("DOMContentLoaded", () => {
 
-if (menuButton && navMenu) {
-  menuButton.addEventListener("click", () => {
-    navMenu.classList.toggle("active");
-  });
-}
+  // Mobile menu
+  const menuButton = document.querySelector(".menu");
+  const nav = document.querySelector("nav");
 
-// Smooth scrolling
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener("click", function (e) {
-    const target = document.querySelector(this.getAttribute("href"));
+  if (menuButton && nav) {
+    menuButton.addEventListener("click", () => {
+      nav.classList.toggle("active");
+      menuButton.classList.toggle("active");
+    });
 
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({
-        behavior: "smooth"
+    nav.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        nav.classList.remove("active");
+        menuButton.classList.remove("active");
       });
-    }
+    });
+  }
+
+  // Smooth scrolling
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener("click", event => {
+      const target = document.querySelector(link.getAttribute("href"));
+
+      if (target) {
+        event.preventDefault();
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    });
   });
+
+  // Automatic year
+  document.querySelectorAll(".current-year").forEach(el => {
+    el.textContent = new Date().getFullYear();
+  });
+
 });
-
-// Music button
-const musicButton = document.querySelector(".music-button");
-
-if (musicButton) {
-  musicButton.addEventListener("click", () => {
-    alert("Music feature coming soon!");
-  });
-}
-
-// Order function
-function order(productName) {
-  const email = "masiri@gmail.com";
-  const subject = encodeURIComponent("Order: " + productName);
-  const body = encodeURIComponent(
-    "Hello,\n\nI would like to order: " + productName
-  );
-
-  window.location.href =
-    "mailto:" + email + "?subject=" + subject + "&body=" + body;
-}
